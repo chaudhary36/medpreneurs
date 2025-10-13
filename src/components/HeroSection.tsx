@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useTypewriter } from 'react-simple-typewriter';
+// import { useTypewriter } from 'react-simple-typewriter';
 import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const slides = [
   {
@@ -29,57 +31,65 @@ const slides = [
 ];
 
 const Hero = () => {
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);  // Track the current slide
-  const [text, setText] = useState(slides[0].heading);  // Store the text for typewriter effect
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [displayedHeading, setDisplayedHeading] = useState(slides[0].heading);
 
-  // Use typewriter hook
-  const [typewriterText] = useTypewriter({
-    words: [text],
-    loop: false,
-    delaySpeed: 1000,
-  });
+  const [typewriterText, setTypewriterText] = useState('');
+
+  // Re-run typewriter when heading changes
+  useEffect(() => {
+    let index = 0;
+    const text = slides[currentSlideIndex].heading;
+    setTypewriterText('');
+
+    const interval = setInterval(() => {
+      if (index < text.length) {
+        setTypewriterText((prev) => prev + text[index]);
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 80); // typing speed
+
+    return () => clearInterval(interval);
+  }, [currentSlideIndex]);
 
   const settings = {
     dots: true,
     infinite: true,
-    speed: 1000,
+    speed: 800,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 5500,
     arrows: false,
-    beforeChange: (current: number, next: number) => {
-      setCurrentSlideIndex(next);  // Update slide index before each change
+    beforeChange: (_: number, next: number) => {
+      setCurrentSlideIndex(next);
     },
   };
-
-  // Trigger typewriter effect when the slide changes
-  useEffect(() => {
-    setText(slides[currentSlideIndex].heading);  // Update the heading for typewriter
-  }, [currentSlideIndex]);
 
   return (
     <section className="bg-white text-black pb-16 sm:px-8">
       <Slider {...settings}>
         {slides.map((slide, index) => (
           <div key={index}>
-            <div className="flex flex-col-reverse md:flex-row items-center max-w-7xl mx-auto">
-              {/* Left side: Text */}
+            <div className="flex flex-col-reverse md:flex-row items-center justify-center max-w-6xl mx-auto gap-6 p-4">
+              {/* Left Text */}
               <div className="md:w-1/2 text-center md:text-left space-y-4">
-                <h1 className="text-4xl text-pruple-600 sm:text-5xl font-bold">
+                <h1 className="text-4xl sm:text-5xl font-bold text-purple-600">
                   {index === currentSlideIndex ? typewriterText : slide.heading}
                 </h1>
-                <p className="text-lg z-50 text-gray-600">{slide.description}</p>
+                <p className="text-lg text-gray-600">{slide.description}</p>
               </div>
 
-              {/* Right side: Image */}
-              <div className="md:w-1/2 mb-6 md:mb-0">
+              {/* Right Image */}
+              <div className="md:w-1/2 flex justify-center">
                 <Image
                   src={slide.image}
                   alt={slide.heading}
-                  width={600}
+                  width={550}
                   height={400}
-                  className="rounded-lg shadow-md object-cover"
+                  className="rounded-2xl shadow-lg object-cover"
                 />
               </div>
             </div>
