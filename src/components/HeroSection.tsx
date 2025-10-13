@@ -36,18 +36,18 @@ const Hero = () => {
   const [typewriterText] = useTypewriter({
     words: [text],
     loop: false,
-    delaySpeed: 500,
+    delaySpeed: 1000,
   });
 
   const settings = {
     dots: true,
     infinite: true,
-    speed: 900,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
-    arrows: true,
+    arrows: false,
     beforeChange: (current: number, next: number) => {
       setCurrentSlideIndex(next);  // Update slide index before each change
     },
