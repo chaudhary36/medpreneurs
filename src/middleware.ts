@@ -39,6 +39,6 @@ export const config = {
   matcher: [
     '/sign-in',
     '/',
-    '/:path*'
+    '/:path*',
 ],
 };
