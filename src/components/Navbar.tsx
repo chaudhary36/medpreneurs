@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [teamDropdownOpen, setTeamDropdownOpen] = useState(false);
 
-  const { data: session } = useSession(); // Get session info
+  const { data: session } = useSession();
 
   const teamMembers = [
     { name: 'Anuj', href: '/anuj' },
@@ -17,6 +17,12 @@ const Navbar: React.FC = () => {
     { name: 'Kaish', href: '/kaish' },
     { name: 'Amit', href: '/amit' },
   ];
+
+  // Close mobile menu and dropdown when link is clicked
+  const handleLinkClick = () => {
+    setMobileMenuOpen(false);
+    setTeamDropdownOpen(false);
+  };
 
   return (
     <nav className="bg-white text-black shadow-md relative z-50">
@@ -34,7 +40,7 @@ const Navbar: React.FC = () => {
               />
             </div>
             <div className="text-xl font-bold">
-              <Link href="/">
+              <Link href="/" onClick={handleLinkClick}>
                 <span className="text-black text-extrabold">Med</span>
                 <span className="text-yellow-600 text-extrabold">preneurs</span>
               </Link>
@@ -76,7 +82,6 @@ const Navbar: React.FC = () => {
               Contact
             </Link>
 
-            {/* Login / Logout button */}
             {session ? (
               <button
                 onClick={() => signOut()}
@@ -122,10 +127,10 @@ const Navbar: React.FC = () => {
       {/* Mobile Menu Items */}
       {mobileMenuOpen && (
         <div className="sm:hidden px-4 pt-2 pb-4 space-y-2">
-          <Link href="/" className="block hover:text-yellow-500">
+          <Link href="/" onClick={handleLinkClick} className="block hover:text-yellow-500">
             Home
           </Link>
-          <Link href="/about" className="block hover:text-yellow-500">
+          <Link href="/about" onClick={handleLinkClick} className="block hover:text-yellow-500">
             About
           </Link>
 
@@ -142,6 +147,7 @@ const Navbar: React.FC = () => {
                 <Link
                   key={member.name}
                   href={member.href}
+                  onClick={handleLinkClick} // ✅ close dropdown when clicked
                   className="block pl-4 py-2 hover:bg-yellow-400 hover:text-black rounded transition"
                 >
                   {member.name}
@@ -149,14 +155,16 @@ const Navbar: React.FC = () => {
               ))}
           </div>
 
-          <Link href="/contact" className="block hover:text-yellow-500">
+          <Link href="/contact" onClick={handleLinkClick} className="block hover:text-yellow-500">
             Contact
           </Link>
 
-          {/* Mobile Login / Logout */}
           {session ? (
             <button
-              onClick={() => signOut()}
+              onClick={() => {
+                signOut();
+                handleLinkClick();
+              }}
               className="block w-full bg-red-500 text-white px-4 py-2 rounded hover:bg-red-400 font-medium mt-2"
             >
               Logout
@@ -164,6 +172,7 @@ const Navbar: React.FC = () => {
           ) : (
             <Link
               href="/login"
+              onClick={handleLinkClick}
               className="block w-full bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 font-medium mt-2"
             >
               Login
