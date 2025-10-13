@@ -47,7 +47,7 @@ const Hero = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
-    arrows: false,
+    arrows: true,
     beforeChange: (current: number, next: number) => {
       setCurrentSlideIndex(next);  // Update slide index before each change
     },
