@@ -2,12 +2,15 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-// import { useTypewriter } from 'react-simple-typewriter';
+import { useTypewriter } from 'react-simple-typewriter';
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 
 const slides = [
+  {
+    heading: 'Hey, I am Anuj',
+    description: `“This is Anuj Chowdhury , Currently I am in Kushinagar district , UP and I am an online student of Arjuna JEE and aimed Boards and JEE 2027 💻”`,
+    image: '/images/anuj.PNG',
+  },
   {
     heading: 'Hey, I am Amit',
     description: `“This is Amit Nishad , Currently I am in Lucknow for my NEET Preparation aimed 2027 ⚕”`,
@@ -23,35 +26,18 @@ const slides = [
     description: `“This is Krishna Sharma , Currently I am in Kushinagar and I am completing my school also I am an online student of Arjuna JEE aimed 2027 🎯”`,
     image: '/images/krishna.PNG',
   },
-  {
-    heading: 'Hey, I am Anuj',
-    description: `“This is Anuj Chowdhury , Currently I am in Kushinagar district , UP and I am an online student of Arjuna JEE and aimed Boards and JEE 2027 💻”`,
-    image: '/images/anuj.PNG',
-  },
 ];
 
 const Hero = () => {
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);  // Track the current slide
+  const [text, setText] = useState(slides[0].heading);  // Store the text for typewriter effect
 
-  const [typewriterText, setTypewriterText] = useState('');
-
-  // Re-run typewriter when heading changes
-  useEffect(() => {
-    let index = 0;
-    const text = slides[currentSlideIndex].heading;
-    setTypewriterText('');
-
-    const interval = setInterval(() => {
-      if (index < text.length) {
-        setTypewriterText((prev) => prev + text[index]);
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 80); // typing speed
-
-    return () => clearInterval(interval);
-  }, [currentSlideIndex]);
+  // Use typewriter hook
+  const [typewriterText] = useTypewriter({
+    words: [text],
+    loop: false,
+    delaySpeed: 1000,
+  });
 
   const settings = {
     dots: true,
@@ -60,35 +46,40 @@ const Hero = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5500,
+    autoplaySpeed: 5000,
     arrows: false,
-    beforeChange: (_: number, next: number) => {
-      setCurrentSlideIndex(next);
+    beforeChange: (current: number, next: number) => {
+      setCurrentSlideIndex(next);  // Update slide index before each change
     },
   };
+
+  // Trigger typewriter effect when the slide changes
+  useEffect(() => {
+    setText(slides[currentSlideIndex].heading);  // Update the heading for typewriter
+  }, [currentSlideIndex]);
 
   return (
     <section className="bg-white text-black pb-16 sm:px-8">
       <Slider {...settings}>
         {slides.map((slide, index) => (
           <div key={index}>
-            <div className="flex flex-col-reverse md:flex-row items-center justify-center max-w-6xl mx-auto gap-6 p-4">
-              {/* Left Text */}
+            <div className="flex flex-col-reverse md:flex-row items-center max-w-7xl mx-auto">
+              {/* Left side: Text */}
               <div className="md:w-1/2 text-center md:text-left space-y-4">
-                <h1 className="text-4xl sm:text-5xl font-bold text-purple-600">
+                <h1 className="text-4xl sm:text-5xl font-bold">
                   {index === currentSlideIndex ? typewriterText : slide.heading}
                 </h1>
-                <p className="text-lg text-gray-600">{slide.description}</p>
+                <p className="text-lg z-50 text-gray-600">{slide.description}</p>
               </div>
 
-              {/* Right Image */}
-              <div className="md:w-1/2 flex justify-center">
+              {/* Right side: Image */}
+              <div className="md:w-1/2 mb-6 md:mb-0">
                 <Image
                   src={slide.image}
                   alt={slide.heading}
-                  width={550}
+                  width={600}
                   height={400}
-                  className="rounded-2xl shadow-lg object-cover"
+                  className="rounded-lg shadow-md object-cover"
                 />
               </div>
             </div>
