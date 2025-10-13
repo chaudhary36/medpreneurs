@@ -9,7 +9,7 @@ const slides = [
   {
     heading: 'Hey, I am Anuj',
     description: `“This is Anuj Chowdhury , Currently I am in Kushinagar district , UP and I am an online student of Arjuna JEE and aimed Boards and JEE 2027 💻”`,
-    image: '/images/anuj.PNG',
+    image: '/images/anujimg.png',
   },
   {
     heading: 'Hey, I am Amit',
