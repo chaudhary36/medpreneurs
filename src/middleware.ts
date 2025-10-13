@@ -1,44 +1,34 @@
-import { NextResponse, NextRequest } from 'next/server'
-import { getToken } from 'next-auth/jwt'
- 
-// This function can be marked `async` if using `await` inside
+import { NextResponse, NextRequest } from 'next/server';
+import { getToken } from 'next-auth/jwt';
+
 export async function middleware(request: NextRequest) {
+  const token = await getToken({ req: request });
+  const url = request.nextUrl;
 
-    const token = await getToken({req: request})
-    // console.log('Token middleware: ' , token)
-    const url = request.nextUrl
+  // If user is logged in, redirect from sign-in to home
+  if (token && url.pathname.startsWith('/sign-in')) {
+    return NextResponse.redirect(new URL('/', request.url));
+  }
 
-    if(token && 
-        (
-            url.pathname.startsWith('/sign-in') 
-        )
-    ){
-        return NextResponse.redirect(new URL(`/` , request.url))
-    }
-
-    // nya tarika hai 
-
-   
-
-
-   if (!token && 
-    url.pathname.startsWith(`/anuj`) ||
-    url.pathname.startsWith(`/kaish`) ||
-    url.pathname.startsWith(`/krishna`) ||
-    url.pathname.startsWith(`/amit`) 
-
-) {
+  // Protected pages: only allow if token exists
+  if (
+    !token &&
+    (
+      url.pathname.startsWith('/anuj') ||
+      url.pathname.startsWith('/kaish') ||
+      url.pathname.startsWith('/krishna') ||
+      url.pathname.startsWith('/amit')
+    )
+  ) {
     return NextResponse.redirect(new URL('/sign-in', request.url));
   }
 
-   return NextResponse.next()
-
+  return NextResponse.next();
 }
- 
+
 export const config = {
   matcher: [
     '/sign-in',
-    '/',
     '/:path*',
-],
+  ],
 };
