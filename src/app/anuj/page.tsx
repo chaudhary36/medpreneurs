@@ -50,9 +50,6 @@ export default function AnujPage() {
             <span className="bg-purple-500/20 text-purple-300 px-4 py-2 rounded-full text-sm">
               💻 Full Stack Developer
             </span>
-            <span className="bg-pink-500/20 text-pink-300 px-4 py-2 rounded-full text-sm">
-              🎥 YouTuber (Webance)
-            </span>
             <span className="bg-green-500/20 text-green-300 px-4 py-2 rounded-full text-sm">
               ☕ Lifelong Learner
             </span>
