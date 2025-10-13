@@ -7,11 +7,6 @@ import Slider from 'react-slick';
 
 const slides = [
   {
-    heading: 'Hey, I am Anuj',
-    description: `“This is Anuj Chowdhury , Currently I am in Kushinagar district , UP and I am an online student of Arjuna JEE and aimed Boards and JEE 2027 💻”`,
-    image: '/images/anuj.PNG',
-  },
-  {
     heading: 'Hey, I am Amit',
     description: `“This is Amit Nishad , Currently I am in Lucknow for my NEET Preparation aimed 2027 ⚕”`,
     image: '/images/amit.PNG',
@@ -25,6 +20,11 @@ const slides = [
     heading: 'Hey , I am Krishna',
     description: `“This is Krishna Sharma , Currently I am in Kushinagar and I am completing my school also I am an online student of Arjuna JEE aimed 2027 🎯”`,
     image: '/images/krishna.PNG',
+  },
+  {
+    heading: 'Hey, I am Anuj',
+    description: `“This is Anuj Chowdhury , Currently I am in Kushinagar district , UP and I am an online student of Arjuna JEE and aimed Boards and JEE 2027 💻”`,
+    image: '/images/anuj.PNG',
   },
 ];
 
