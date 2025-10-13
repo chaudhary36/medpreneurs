@@ -36,7 +36,7 @@ const Hero = () => {
   const [typewriterText] = useTypewriter({
     words: [text],
     loop: false,
-    delaySpeed: 1000,
+    delaySpeed: 500,
   });
 
   const settings = {
