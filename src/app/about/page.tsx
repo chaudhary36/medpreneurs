@@ -1,7 +1,6 @@
 // src/app/about/page.tsx
 "use client";
 
-import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -36,7 +35,6 @@ const members = [
 export default function AboutPage() {
   return (
     <div>
-      <Navbar/>
    
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900 text-white flex flex-col items-center py-20 px-6">
       {/* Header */}

@@ -1,7 +1,6 @@
 // src/app/contact/page.tsx
 "use client";
 
-import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
 import { Mail, MessageCircle, Heart } from "lucide-react";
 import Link from "next/link";
@@ -9,7 +8,6 @@ import Link from "next/link";
 export default function ContactPage() {
   return (
     <div>
-    <Navbar/>
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900 text-white px-4">
       {/* Heading */}
       <motion.h1
