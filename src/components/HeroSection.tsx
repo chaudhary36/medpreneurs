@@ -32,7 +32,6 @@ const slides = [
 
 const Hero = () => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const [displayedHeading, setDisplayedHeading] = useState(slides[0].heading);
 
   const [typewriterText, setTypewriterText] = useState('');
 
