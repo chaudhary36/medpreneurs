@@ -6,7 +6,7 @@ import Link from 'next/link';
 const friends = [
   {
     name: 'Anuj',
-    photo: '/images/anuj.PNG', // Replace with real photo
+    photo: '/images/anujimg.png', // Replace with real photo
     bio: 'Anuj is the visionary of our group, always thinking big and bringing everyone together.',
   },
   {

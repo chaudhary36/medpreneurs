@@ -15,7 +15,7 @@ export default function AmitPage() {
 
       <div className="max-w-5xl w-full bg-gray-800/60 rounded-3xl shadow-xl p-10 flex flex-col md:flex-row items-center gap-10">
         <div className="relative w-56 h-56 rounded-full overflow-hidden shadow-lg border-4 border-gray-700">
-          <Image src="/images/amit.png" alt="Amit Nishad" fill className="object-cover" />
+          <Image src="/images/amit.PNG" alt="Amit Nishad" fill className="object-cover" />
         </div>
 
         <div className="text-center md:text-left space-y-6">

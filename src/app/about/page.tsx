@@ -16,19 +16,19 @@ const members = [
     name: "Kaish",
     role: "Gen-z 😂",
     quote: "Don't care how big the problem is ...",
-    img: "/images/kaish.png",
+    img: "/images/kaish.PNG",
   },
   {
     name: "Krishna",
     role: "The Calm One 😌",
     quote: "Always chill, no matter the chaos around.",
-    img: "/images/krishna.png",
+    img: "/images/krishna.PNG",
   },
   {
     name: "Amit",
     role: "The Planner 📋",
     quote: "Plans everything... but never follows it.",
-    img: "/images/amit.png",
+    img: "/images/amit.PNG",
   },
 ];
 
