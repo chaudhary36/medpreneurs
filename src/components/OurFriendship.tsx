@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 const friends = [
   {
@@ -38,13 +39,15 @@ const OurFriendshipSection = () => {
               className="flex flex-col items-center text-center transition-transform transform hover:scale-105 hover:shadow-lg"
             >
               <div className="relative w-36 h-36 mb-4 rounded-full overflow-hidden border-4 border-yellow-400">
+                <Link href={`${friend.name.toLocaleLowerCase()}`}>
                 <Image
                   src={friend.photo}
                   alt={friend.name}
                   layout="fill"
                   objectFit="cover"
                   className="rounded-full"
-                />
+                  />
+                  </Link>
               </div>
               <h3 className="text-xl font-semibold text-black mb-2">{friend.name}</h3>
               <p className="text-gray-600 text-sm">{friend.bio}</p>

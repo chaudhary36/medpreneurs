@@ -9,9 +9,10 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <div className='overflow-x-hidden'>
+    <div className='overflow-x-hidden '>
     <Navbar/>
     <Hero/>
+    {/* <TeamSection/> */}
 
     <WhyUs/>
     <AchievementsSection/>

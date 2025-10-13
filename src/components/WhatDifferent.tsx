@@ -1,58 +1,71 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
-import bg from '../../public/images/bg-pexels.jpg';
 import Image from 'next/image';
+import bg from '../../public/images/bg-pexels.jpg';
+import { motion } from 'framer-motion';
 
 const CTASection = () => {
   return (
-    <section className="relative py-24 w-full h-full">
+    <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden text-center">
       {/* Background Image */}
-      <div className="absolute inset-0 opacity-80">
+      <div className="absolute inset-0">
         <Image
           src={bg}
-          alt="Background image"
-          layout="fill"
-          objectFit="cover"
-          className="object-cover w-full h-full  "
+          alt="Background"
+          fill
+          className="object-cover brightness-75"
+          priority
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
       </div>
 
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-opacity-50"></div>
-
       {/* Content */}
-      <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-        {/* CTA Heading */}
-        <h2 className="text-5xl md:text-6xl font-extrabold text-red-800 mb-6">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="relative z-10 max-w-5xl px-6"
+      >
+        {/* Quote */}
+        <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight drop-shadow-lg">
           “Alone we can do so little; together we can do so much.”
         </h2>
 
-        {/* Subheading */}
-        <p className="text-4xl text-blue-400 sm:text-5xl font-semibold italic mb-6 transition-all animate-fadeInUp">
-             — Medpreneurs
-          </p>
+        {/* Tagline */}
+        <p className="text-2xl sm:text-4xl font-semibold text-cyan-400 italic mb-10">
+          — Medpreneurs
+        </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+        {/* Buttons */}
+        <div className="flex flex-col sm:flex-row justify-center gap-5">
           <Link
             href="/signup"
-            className="px-8 py-4 bg-white text-black font-semibold rounded-lg shadow-lg hover:bg-gray-200 transition"
+            className="px-8 py-4 bg-white text-black font-semibold rounded-xl shadow-md hover:bg-gray-200 transition-all duration-300"
           >
             Get Started
           </Link>
+
           <Link
             href="/learn-more"
-            className="px-8 py-4 border border-white text-white font-semibold rounded-lg hover:bg-white/10 transition"
+            className="px-8 py-4 border border-cyan-400 text-cyan-300 font-semibold rounded-xl hover:bg-cyan-400/10 hover:scale-105 transition-all duration-300"
           >
             Learn More
           </Link>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Optional Decorative Shapes */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-x-32 -translate-y-32"></div>
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl translate-x-32 translate-y-32"></div>
+      {/* Subtle Floating Blobs for Style */}
+      <motion.div
+        animate={{ y: [0, -15, 0] }}
+        transition={{ duration: 5, repeat: Infinity }}
+        className="absolute top-10 left-10 w-56 h-56 bg-cyan-400/20 rounded-full blur-3xl"
+      />
+      <motion.div
+        animate={{ y: [0, 20, 0] }}
+        transition={{ duration: 6, repeat: Infinity }}
+        className="absolute bottom-10 right-10 w-56 h-56 bg-purple-500/20 rounded-full blur-3xl"
+      />
     </section>
   );
 };

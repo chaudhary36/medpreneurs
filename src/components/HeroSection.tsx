@@ -74,6 +74,7 @@ const Hero = () => {
 
               {/* Right side: Image */}
               <div className="md:w-1/2 mb-6 md:mb-0">
+              
                 <Image
                   src={slide.image}
                   alt={slide.heading}
@@ -81,6 +82,7 @@ const Hero = () => {
                   height={400}
                   className="rounded-lg shadow-md object-cover"
                 />
+     
               </div>
             </div>
           </div>
