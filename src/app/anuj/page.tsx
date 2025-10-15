@@ -39,7 +39,7 @@ export default function AnujPage() {
             “Hey there! I’m Anuj from <span className="text-blue-400">Kushinagar, UP</span>.
             I’m currently studying for <span className="text-green-400">JEE 2027</span> as an
             online student of Arjuna JEE. Apart from studies, I love exploring
-            <span className="text-yellow-400"> web development, SaaS ideas, and creating videos for my YouTube channel ‘Webance’</span>.”
+            <span className="text-yellow-400"> web development, SaaS ideas</span>.”
           </p>
 
           {/* Highlights */}
