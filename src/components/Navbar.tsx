@@ -171,7 +171,7 @@ const Navbar: React.FC = () => {
             </button>
           ) : (
             <Link
-              href="/login"
+              href="/sign-in"
               onClick={handleLinkClick}
               className="block w-full bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 font-medium mt-2"
             >
