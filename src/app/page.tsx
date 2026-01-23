@@ -10,10 +10,8 @@ import React from 'react'
 const Home = () => {
   return (
     <div className='overflow-x-hidden '>
-    {/* <Navbar/> */}
+  <Navbar/>
     <Hero/>
-    {/* <TeamSection/> */}
-
     <WhyUs/>
     <AchievementsSection/>
     <WhatMakesUsDifferent/>

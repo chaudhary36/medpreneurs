@@ -2,16 +2,14 @@ import type { Metadata } from "next";
 import { Comfortaa } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
-import ClientLayout from "@/components/ClientLayout";
+import Preloader from "@/components/Preloader";
 
 const comfortaa = Comfortaa({ subsets: ['latin'], weight: '700' });
 
-
 export const metadata: Metadata = {
-  title: "Medpreneurs",
-  description: "Welcome to the MedPreneurs...",
+  title: 'Medpreneurs | The Collective',
+  description: 'Bridging Biology and Technology.',
 };
-
 
 export default function RootLayout({
   children,
@@ -23,11 +21,9 @@ export default function RootLayout({
       <body
         className={`${comfortaa.className} ${comfortaa.className} antialiased`}
       >
+        <Preloader />
         <Providers>
-        <ClientLayout>
-
         {children}
-        </ClientLayout>
         </Providers>
       </body>
     </html>

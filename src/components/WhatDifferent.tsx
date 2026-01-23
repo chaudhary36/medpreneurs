@@ -1,73 +1,106 @@
 'use client';
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import bg from '../../public/images/bg-pexels.jpg';
-import { motion } from 'framer-motion';
 
-const CTASection = () => {
+import { useTypewriter, Cursor } from 'react-simple-typewriter';
+
+const Mindset = () => {
+  const [text] = useTypewriter({
+    words: [
+      'console.log("Pain is temporary.");',
+      'while(alive) { grind(); }',
+      'if (tired) { rest(); } else { quit(false); }',
+      'import { Discipline } from "life";',
+    ],
+    loop: true,
+    delaySpeed: 2000,
+    typeSpeed: 80,
+    deleteSpeed: 50,
+  });
+
+  const values = [
+    { title: '01 // DISCIPLINE', desc: 'Motivation is fleeting. Systems are permanent.' },
+    { title: '02 // OBSESSION', desc: 'It is not a hobby. It is a biological necessity.' },
+    { title: '03 // EXECUTION', desc: 'Ideas are cheap. Code and Results are the currency.' },
+  ];
+
   return (
-    <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden text-center">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <Image
-          src={bg}
-          alt="Background"
-          fill
-          className="object-cover brightness-75"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
+    <section className="relative w-full bg-yellow-400 py-20 overflow-hidden text-black selection:bg-black selection:text-white">
+      
+      {/* --- BACKGROUND MARQUEE (Infinite Scroll) --- */}
+      {/* This creates the "Ticker Tape" effect running behind everything */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden opacity-10 pointer-events-none select-none">
+        <div className="whitespace-nowrap animate-marquee text-[10rem] font-black leading-none uppercase">
+          FOCUS  GRIND  BUILD  LEARN  FOCUS  GRIND  BUILD  LEARN
+        </div>
       </div>
 
-      {/* Content */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="relative z-10 max-w-5xl px-6"
-      >
-        {/* Quote */}
-        <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight drop-shadow-lg">
-          “Alone we can do so little; together we can do so much.”
-        </h2>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          {/* --- LEFT: The Values Grid --- */}
+          <div className="space-y-8">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">
+              The Source <br /> Code.
+            </h2>
+            
+            <div className="space-y-6">
+              {values.map((val, idx) => (
+                <div key={idx} className="group border-l-4 border-black pl-6 hover:pl-8 transition-all duration-300">
+                  <h3 className="text-xl font-bold font-mono group-hover:underline decoration-2 underline-offset-4">
+                    {val.title}
+                  </h3>
+                  <p className="text-lg font-medium opacity-80 mt-1">
+                    {val.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
 
-        {/* Tagline */}
-        <p className="text-2xl sm:text-4xl font-semibold text-cyan-400 italic mb-10">
-          — Medpreneurs
-        </p>
+          {/* --- RIGHT: The Terminal (Animated Typewriter) --- */}
+          <div className="w-full">
+            <div className="bg-black text-gray-300 rounded-xl shadow-2xl overflow-hidden font-mono text-sm md:text-base border border-gray-800 transform hover:scale-[1.02] transition-transform duration-500">
+              
+              {/* Terminal Header */}
+              <div className="bg-[#1a1a1a] px-4 py-2 flex items-center gap-2 border-b border-gray-800">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                <div className="ml-2 text-xs text-gray-500">root@medpreneurs:~</div>
+              </div>
 
-        {/* Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center gap-5">
-          <Link
-            href="/signup"
-            className="px-8 py-4 bg-white text-black font-semibold rounded-xl shadow-md hover:bg-gray-200 transition-all duration-300"
-          >
-            Get Started
-          </Link>
+              {/* Terminal Body */}
+              <div className="p-6 h-[200px] flex flex-col justify-center">
+                <div>
+                  <span className="text-green-400">➜</span> <span className="text-blue-400">~</span> <span className="text-yellow-400">run_daily_motivation.exe</span>
+                </div>
+                <div className="mt-4 text-xl md:text-2xl text-white font-bold">
+                  {text}
+                  <Cursor cursorColor="#FACC15" />
+                </div>
+                <div className="mt-8 text-xs text-gray-600 animate-pulse">
+                  _ System waiting for user input...
+                </div>
+              </div>
 
-          <Link
-            href="/learn-more"
-            className="px-8 py-4 border border-cyan-400 text-cyan-300 font-semibold rounded-xl hover:bg-cyan-400/10 hover:scale-105 transition-all duration-300"
-          >
-            Learn More
-          </Link>
+            </div>
+          </div>
+
         </div>
-      </motion.div>
+      </div>
 
-      {/* Subtle Floating Blobs for Style */}
-      <motion.div
-        animate={{ y: [0, -15, 0] }}
-        transition={{ duration: 5, repeat: Infinity }}
-        className="absolute top-10 left-10 w-56 h-56 bg-cyan-400/20 rounded-full blur-3xl"
-      />
-      <motion.div
-        animate={{ y: [0, 20, 0] }}
-        transition={{ duration: 6, repeat: Infinity }}
-        className="absolute bottom-10 right-10 w-56 h-56 bg-purple-500/20 rounded-full blur-3xl"
-      />
+      {/* Tailwind Custom Animation Style (Add this to globals.css if marquee doesn't move) */}
+      <style jsx>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          animation: marquee 20s linear infinite;
+        }
+      `}</style>
     </section>
   );
 };
 
-export default CTASection;
+export default Mindset;

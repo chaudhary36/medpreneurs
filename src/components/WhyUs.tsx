@@ -1,58 +1,131 @@
 'use client';
 
-import { GoalIcon } from 'lucide-react';
-import React from "react";
-// import { InfiniteMovingCards } from "../ui/infinite-moving-cards"
-import {  FaUsers, FaThinkPeaks, FaCriticalRole } from 'react-icons/fa';
+import { useEffect, useState, useRef } from 'react';
 
-const features = [
-  {
-    icon: <FaThinkPeaks className="text-yellow-400 text-4xl" />,
-    title: 'Sharp Thinkers',
-    description: 'We bring creativity and cutting-edge thinking to every medical business we support.',
-  },
-  {
-    icon: <FaCriticalRole className="text-yellow-400 text-4xl" />,
-    title: 'Critical Situation',
-    description: 'Built for medpreneurs, by medpreneurs. We know your needs and speak your language.',
-  },
-  {
-    icon: <FaUsers className="text-yellow-400 text-4xl" />,
-    title: 'Community Driven',
-    description: 'Join a growing community of like-minded professionals who support each other.',
-  },
-  {
-    icon: <GoalIcon className="text-yellow-400 text-4xl" />,
-    title: 'Big Goals',
-    description: 'From idea to launch, we help you move fast without losing quality.',
-  },
-];
+// Reusable Counter Component
+const AnimatedCounter = ({ end, label, suffix = '' }: { end: number; label: string; suffix?: string }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-const WhyUs = () => {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let start = 0;
+    const duration = 2000; // 2 seconds animation
+    const increment = end / (duration / 16); // 60fps
+
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+
+    return () => clearInterval(timer);
+  }, [isVisible, end]);
+
   return (
-    <section className="bg-white text-black py-20 px-4 sm:px-8">
-      <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-6">Who Medpreneurs?</h2>
-        <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
-          Discover why we are here and who we are. We are not just a platform were a movement occurs.
-        </p>
+    <div ref={ref} className="text-center p-6 bg-neutral-900/50 border border-white/5 rounded-xl hover:border-yellow-500/30 transition-colors">
+      <div className="text-4xl md:text-5xl font-bold text-white mb-2 font-mono">
+        {count}
+        <span className="text-yellow-400">{suffix}</span>
+      </div>
+      <div className="text-sm text-gray-400 uppercase tracking-widest">{label}</div>
+    </div>
+  );
+};
 
+const MissionStats = () => {
+  return (
+    <section className="relative w-full bg-[#050505] py-24 border-t border-white/5">
+      
+      {/* Decorative vertical line connecting sections */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-yellow-500/50 to-transparent"></div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="p-6 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition"
-            >
-              <div className="mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-              <p className="text-gray-600 text-sm">{feature.description}</p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          
+          {/* --- LEFT: The "Mission" Protocol --- */}
+          <div className="space-y-8">
+            <div className="inline-flex items-center gap-2 text-yellow-400 font-mono text-sm tracking-widest uppercase">
+              <span className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span>
+              Mission Protocol
             </div>
-          ))}
+            
+            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+              Bridging Biological Science with <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-500">Digital Infrastructure</span>.
+            </h2>
+            
+            <p className="text-gray-400 text-lg leading-relaxed border-l-2 border-yellow-500/20 pl-6">
+              We are a closed-loop collective. While the world is distracted, we are compiling knowledge. 
+              From the microscopic details of <strong>NEET</strong> biology to the architectural complexity of <strong>JEE</strong> mathematics and Full-Stack development.
+            </p>
+
+            <div className="flex flex-col gap-4">
+               {/* Progress Bar 1 */}
+               <div className="space-y-2">
+                 <div className="flex justify-between text-xs font-mono text-gray-400">
+                   <span>PROJECT: MEDPRENEURS</span>
+                   <span>LOADING...</span>
+                 </div>
+                 <div className="h-1 w-full bg-gray-800 rounded-full overflow-hidden">
+                   <div className="h-full bg-yellow-400 w-[65%] shadow-[0_0_10px_rgba(250,204,21,0.5)]"></div>
+                 </div>
+               </div>
+
+               {/* Progress Bar 2 */}
+               <div className="space-y-2">
+                 <div className="flex justify-between text-xs font-mono text-gray-400">
+                   <span>TARGET: 2027 EXAMS</span>
+                   <span>IN PROGRESS</span>
+                 </div>
+                 <div className="h-1 w-full bg-gray-800 rounded-full overflow-hidden">
+                   <div className="h-full bg-white w-[40%]"></div>
+                 </div>
+               </div>
+            </div>
+          </div>
+
+          {/* --- RIGHT: Live Telemetry (Counters) --- */}
+          <div className="grid grid-cols-2 gap-4">
+            <AnimatedCounter end={4} label="Core Members" />
+            <AnimatedCounter end={2} label="Active Domains" suffix="+" />
+            <AnimatedCounter end={2027} label="Target Year" />
+            <AnimatedCounter end={100} label="Focus Level" suffix="%" />
+            
+            {/* Context Card */}
+            <div className="col-span-2 mt-4 p-6 bg-yellow-400/5 border border-yellow-400/20 rounded-xl text-center">
+              <p className="text-yellow-200 text-sm font-mono">
+                "Consistently shipping code and solving problems."
+              </p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
   );
 };
 
-export default WhyUs;
+export default MissionStats;
