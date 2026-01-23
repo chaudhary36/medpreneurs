@@ -18,7 +18,7 @@ const ContactPage = () => {
   };
 
   return (
-    <main className="bg-black min-h-screen text-white selection:bg-yellow-400 selection:text-black">
+    <main className=" overflow-hidden bg-black min-h-screen text-white selection:bg-yellow-400 selection:text-black">
       <Navbar />
 
       <section className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col justify-center">
@@ -170,7 +170,7 @@ const ContactPage = () => {
 
       <Footer />
     </main>
-  );
+  );  
 };
 
 export default ContactPage;
