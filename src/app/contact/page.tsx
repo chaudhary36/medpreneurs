@@ -43,7 +43,7 @@ const ContactPage = () => {
                 </span>
               </h1>
               <p className="text-gray-400 text-lg max-w-md">
-                Whether it's a project collaboration, a fun inquiry, or just to say hello to the squad.
+                Whether it&apos;s a project collaboration, a fun inquiry, or just to say hello to the squad.
               </p>
             </div>
 

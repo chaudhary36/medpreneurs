@@ -143,7 +143,7 @@ const AboutPage = () => {
           <div className="space-y-6 text-gray-400 leading-relaxed text-lg">
             <p>
               In <span className="text-white font-bold">September 2025</span>, four friends realized that the traditional path was too slow. 
-              The world divides people into "Doctors" or "Engineers." We refused to choose.
+              The world divides people into &quot;Doctors&quot; or &quot;Engineers.&quot; We refused to choose.
             </p>
             <p>
               Anuj and Krishna persue their passion towards Solutions. Amit and Kaish provide the biological precision. 

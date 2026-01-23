@@ -117,7 +117,7 @@ const MissionStats = () => {
             {/* Context Card */}
             <div className="col-span-2 mt-4 p-6 bg-yellow-400/5 border border-yellow-400/20 rounded-xl text-center">
               <p className="text-yellow-200 text-sm font-mono">
-                "Consistently shipping code and solving problems."
+                &quot;Consistently shipping code and solving problems.&quot;
               </p>
             </div>
           </div>

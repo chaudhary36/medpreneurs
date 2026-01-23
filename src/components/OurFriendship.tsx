@@ -45,8 +45,8 @@ const FriendshipCore = () => {
             The <span className="text-yellow-400">Brotherhood</span>
           </h2>
           <p className="mt-4 text-gray-400 text-lg max-w-2xl mx-auto">
-            "Four distinct paths converging on a single destination. 
-            Since <span className="text-yellow-400 font-mono font-bold">2025</span>."
+            &quot; distinct paths converging on a single destination. 
+            Since <span className="text-yellow-400 font-mono font-bold">2025</span>.&quot;
           </p>
         </div>
 
@@ -86,7 +86,7 @@ const FriendshipCore = () => {
                 
                 {/* Quote (Only visible on hover) */}
                 <p className="text-gray-300 text-sm italic opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200 translate-y-4 group-hover:translate-y-0">
-                  "{friend.quote}"
+                  &quot;{friend.quote}&quot;
                 </p>
               </div>
 
